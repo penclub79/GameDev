@@ -1,0 +1,345 @@
+:root {
+  --bg: #07111f;
+  --panel: rgba(10, 21, 37, 0.82);
+  --panel-strong: rgba(13, 30, 54, 0.94);
+  --line: rgba(138, 180, 248, 0.18);
+  --text: #edf5ff;
+  --muted: #9fb3c9;
+  --accent: #61dafb;
+  --accent-2: #ffd166;
+  --accent-3: #ff7b72;
+  --good: #7ee787;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(97, 218, 251, 0.16), transparent 30%),
+    radial-gradient(circle at right, rgba(255, 209, 102, 0.14), transparent 25%),
+    linear-gradient(135deg, #02050a 0%, #07111f 45%, #10233d 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.eyebrow,
+.panel-label {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  font-family: "Black Han Sans", sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+.hero-copy,
+.prestige-copy,
+#status-text,
+.save-status {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.hero-card,
+.panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.hero-card {
+  width: min(320px, 100%);
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(255, 209, 102, 0.14), rgba(97, 218, 251, 0.06)), var(--panel-strong);
+}
+
+.hero-card-label,
+.card-meta,
+.resource-values span,
+.stats-strip span,
+.prestige-stats span,
+.prestige-summary span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hero-card strong,
+.resource-values strong,
+.prestige-summary strong,
+.prestige-stats strong {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.panel {
+  padding: 22px;
+}
+
+.panel-primary {
+  grid-column: span 2;
+  background:
+    linear-gradient(180deg, rgba(97, 218, 251, 0.12), rgba(255, 255, 255, 0)),
+    var(--panel-strong);
+}
+
+.resource-head,
+.section-head,
+.stats-strip,
+.prestige-stats,
+.system-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.resource-values {
+  text-align: right;
+}
+
+.resource-values strong {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+button {
+  border: 0;
+  border-radius: 18px;
+  cursor: pointer;
+  font: inherit;
+  transition: transform 140ms ease, opacity 140ms ease, background 140ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}
+
+.gather-button {
+  width: 100%;
+  margin: 20px 0;
+  padding: 28px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #03111a;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  box-shadow: inset 0 -8px 24px rgba(255, 255, 255, 0.25);
+}
+
+.gather-button strong {
+  font-size: 1.8rem;
+}
+
+.stats-strip,
+.prestige-stats {
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.stats-strip > div,
+.prestige-stats > div {
+  flex: 1;
+  min-width: 140px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.stats-strip strong,
+.prestige-stats strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.15rem;
+}
+
+.log-box {
+  margin-top: 18px;
+}
+
+#event-log {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+#event-log li {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+}
+
+.card-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.card-top,
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.card-bottom {
+  margin-top: 14px;
+}
+
+.buy-button,
+.secondary-button {
+  padding: 12px 16px;
+  color: var(--text);
+  background: rgba(97, 218, 251, 0.14);
+  border: 1px solid rgba(97, 218, 251, 0.2);
+}
+
+.secondary-button {
+  width: 100%;
+}
+
+.danger {
+  background: rgba(255, 123, 114, 0.12);
+  border-color: rgba(255, 123, 114, 0.24);
+}
+
+.cost-tag,
+.owned-tag {
+  display: inline-flex;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.08);
+  color: var(--accent-2);
+  font-size: 0.9rem;
+}
+
+.save-status {
+  margin: 14px 0 0;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .grid {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .panel-primary {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 20px;
+  }
+
+  .panel,
+  .hero-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .resource-head,
+  .section-head,
+  .card-top,
+  .card-bottom,
+  .system-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resource-values,
+  .prestige-summary {
+    text-align: left;
+  }
+}
