@@ -10,10 +10,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="space-glow glow-a"></div>
+  <div class="space-glow glow-b"></div>
+
   <div class="app-shell">
     <header class="hero">
-      <div>
-        <p class="eyebrow">웹 방치형 게임 MVP</p>
+      <div class="hero-copy-block">
+        <p class="eyebrow">웹 방치형 게임 - hocheol</p>
         <h1>Star Foundry Idle</h1>
         <p class="hero-copy">
           별가루를 모아 자동 생산 라인을 확장하고, 코어를 재점화해 더 강한 회차를 여는 간단한 방치형 게임입니다.
@@ -26,108 +29,135 @@
       </div>
     </header>
 
-    <main class="grid">
-      <section class="panel panel-primary">
-        <div class="resource-head">
-          <div>
-            <p class="panel-label">핵심 자원</p>
-            <h2>별가루</h2>
+    <main class="cockpit">
+      <aside class="side-column">
+        <section class="panel hud-panel">
+          <div class="section-head">
+            <div>
+              <p class="panel-label">핵심 자원</p>
+              <h2>별가루</h2>
+            </div>
+            <div class="resource-values">
+              <strong id="stardust-value">0</strong>
+              <span id="rate-value">초당 0</span>
+            </div>
           </div>
-          <div class="resource-values">
-            <strong id="stardust-value">0</strong>
-            <span id="rate-value">초당 0</span>
-          </div>
-        </div>
 
-        <button id="gather-button" class="gather-button">
-          <span>별가루 채집</span>
-          <strong id="click-value">+1</strong>
-        </button>
+          <div class="stats-stack">
+            <div class="stat-card">
+              <span>클릭당 획득</span>
+              <strong id="per-click-value">1</strong>
+            </div>
+            <div class="stat-card">
+              <span>자동 생산</span>
+              <strong id="automation-value">0</strong>
+            </div>
+            <div class="stat-card">
+              <span>코어 보너스</span>
+              <strong id="prestige-bonus-value">x1.00</strong>
+            </div>
+          </div>
+        </section>
 
-        <div class="stats-strip">
-          <div>
-            <span>클릭당</span>
-            <strong id="per-click-value">1</strong>
+        <section class="panel log-panel">
+          <div class="section-head">
+            <div>
+              <p class="panel-label">상태 로그</p>
+              <h2>운영 기록</h2>
+            </div>
           </div>
-          <div>
-            <span>자동 생산</span>
-            <strong id="automation-value">0</strong>
-          </div>
-          <div>
-            <span>코어 보너스</span>
-            <strong id="prestige-bonus-value">x1.00</strong>
-          </div>
-        </div>
-
-        <div class="log-box">
-          <p class="panel-label">상태 로그</p>
           <ul id="event-log"></ul>
+        </section>
+      </aside>
+
+      <section class="center-stage">
+        <div class="star-stage">
+          <div class="orbit orbit-outer"></div>
+          <div class="orbit orbit-inner"></div>
+          <button id="gather-button" class="star-core-button">
+            <span class="star-core-glow"></span>
+            <span class="star-core-shape"></span>
+            <span class="star-core-text">
+              <em>STAR CORE</em>
+              <strong id="click-value">+1</strong>
+            </span>
+          </button>
+        </div>
+
+        <div class="center-caption">
+          <p class="panel-label">메인 클릭 오브젝트</p>
+          <h2>항성 코어 채집</h2>
+          <p class="hero-copy">
+            중앙의 별 코어를 클릭해 별가루를 직접 모으고, 생산 라인을 점점 자동화하세요.
+          </p>
         </div>
       </section>
 
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="panel-label">생산 건물</p>
-            <h2>라인 확장</h2>
+      <aside class="side-column">
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <p class="panel-label">생산 건물</p>
+              <h2>라인 확장</h2>
+            </div>
           </div>
-        </div>
-        <div id="buildings-list" class="card-list"></div>
-      </section>
+          <div id="buildings-list" class="card-list"></div>
+        </section>
 
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="panel-label">업그레이드</p>
-            <h2>효율 최적화</h2>
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <p class="panel-label">업그레이드</p>
+              <h2>효율 최적화</h2>
+            </div>
           </div>
-        </div>
-        <div id="upgrades-list" class="card-list"></div>
-      </section>
+          <div id="upgrades-list" class="card-list"></div>
+        </section>
 
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="panel-label">회차 시스템</p>
-            <h2>코어 재점화</h2>
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <p class="panel-label">회차 시스템</p>
+              <h2>코어 재점화</h2>
+            </div>
+            <div class="prestige-summary">
+              <span>보유 코어</span>
+              <strong id="core-value">0</strong>
+            </div>
           </div>
-          <div class="prestige-summary">
-            <span>보유 코어</span>
-            <strong id="core-value">0</strong>
+          <p class="prestige-copy">
+            총 누적 별가루가 늘수록 코어를 얻습니다. 재점화하면 진행 상황은 초기화되지만 영구 배율이 증가합니다.
+          </p>
+          <div class="prestige-stats">
+            <div>
+              <span>이번 회차 예상 코어</span>
+              <strong id="prestige-gain-value">0</strong>
+            </div>
+            <div>
+              <span>총 누적 별가루</span>
+              <strong id="lifetime-value">0</strong>
+            </div>
           </div>
-        </div>
-        <p class="prestige-copy">
-          총 누적 별가루가 늘수록 코어를 얻습니다. 재점화하면 진행 상황은 초기화되지만 영구 배율이 증가합니다.
-        </p>
-        <div class="prestige-stats">
-          <div>
-            <span>이번 회차 예상 코어</span>
-            <strong id="prestige-gain-value">0</strong>
-          </div>
-          <div>
-            <span>총 누적 별가루</span>
-            <strong id="lifetime-value">0</strong>
-          </div>
-        </div>
-        <button id="prestige-button" class="secondary-button">코어 재점화</button>
-      </section>
+          <button id="prestige-button" class="secondary-button">코어 재점화</button>
+        </section>
 
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="panel-label">시스템</p>
-            <h2>저장 관리</h2>
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <p class="panel-label">시스템</p>
+              <h2>저장 관리</h2>
+            </div>
           </div>
-        </div>
-        <div class="system-actions">
-          <button id="save-button" class="secondary-button">즉시 저장</button>
-          <button id="reset-button" class="secondary-button danger">전체 초기화</button>
-        </div>
-        <p id="save-status" class="save-status">저장 대기 중</p>
-      </section>
+          <div class="system-actions">
+            <button id="save-button" class="secondary-button">즉시 저장</button>
+            <button id="reset-button" class="secondary-button danger">전체 초기화</button>
+          </div>
+          <p id="save-status" class="save-status">저장 대기 중</p>
+        </section>
+      </aside>
     </main>
   </div>
 
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
